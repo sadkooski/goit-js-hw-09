@@ -10,36 +10,39 @@ let step;
 let amount;
 
 form.addEventListener('input', inputsListener);
-btnCreate.addEventListener(
-  'submit', createPromiseMultiple);
+form.addEventListener('submit', createPromiseMultiple);
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
 
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (shouldResolve) {
-        resolve({ position, delay });
-        // Fulfill
-      } else {
-        reject({ position, delay });
-        // Reject
-      }
-    }, delay);
+    if (shouldResolve) {
+      resolve({ position, delay });
+      // Fulfill
+    } else {
+      reject({ position, delay });
+      // Reject
+    }
   });
 }
 
-function createPromiseMultiple() {
-  for (let i = 1; 1 < amount; 1++) {s
-
-    createPromise(2, delay)
-    .then(({ position, delay }) => {
-      console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-    })
-    .catch(({ position, delay }) => {
-      console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-    })
-  };
+function createPromiseMultiple(event) {
+  event.preventDefault();
+  setTimeout(() => {
+    for (let i = 0; i < amount; i++) {
+      position = i + 1;
+      setTimeout(() => {
+        // mejbi set Interval
+        createPromise(position, delay)
+          .then(({ position, delay }) => {
+            console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+          })
+          .catch(({ position, delay }) => {
+            console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+          });
+      }, step);
+    }
+  }, delay);
 }
 
 function inputsListener(event) {
