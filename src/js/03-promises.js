@@ -1,9 +1,5 @@
 import Notiflix from 'notiflix';
 
-const inputDelay = document.querySelector('[name="delay"]');
-const inputStep = document.querySelector('[name="step"]');
-const inputAmount = document.querySelector('[name="amount"]');
-const btnCreate = document.querySelector('[type="submit"]');
 const form = document.querySelector('form');
 
 let position;
