@@ -7,6 +7,7 @@ const daysSpan = document.querySelector('[data-days]');
 const hoursSpan = document.querySelector('[data-hours]');
 const minutesSpan = document.querySelector('[data-minutes]');
 const secondsSpan = document.querySelector('[data-seconds]');
+const divTimer = document.querySelector('.timer');
 
 const date = new Date();
 let leftTime = 0;
@@ -29,11 +30,15 @@ const options = {
 };
 
 function addLeadingZero(value) {
-  // if (value.length < 2)
-  const newValue = value;
-  newValue = newValue.padStart(1, '0');
-  console.log(newValue);
-  console.log('works');
+  // divTimer.addEventListener("input", (event) => {
+  // if (event.currentTarget.textContent) {};
+  // });
+
+  if (String(value).length < 2) {
+    return (value = String(value).padStart(2, '0'));
+  }
+  // console.log(String(value).length);
+  console.log(value);
 }
 
 function convertMs(ms) {
