@@ -39,6 +39,7 @@ function addLeadingZero(value) {
   }
   // console.log(String(value).length);
   console.log(value);
+  return value;
 }
 
 function convertMs(ms) {
@@ -59,10 +60,10 @@ function convertMs(ms) {
 
   addLeadingZero(days);
 
-  daysSpan.textContent = days;
-  hoursSpan.textContent = hours;
-  minutesSpan.textContent = minutes;
-  secondsSpan.textContent = seconds;
+  daysSpan.textContent = addLeadingZero(days);
+  hoursSpan.textContent = addLeadingZero(hours);
+  minutesSpan.textContent = addLeadingZero(minutes);
+  secondsSpan.textContent = addLeadingZero(seconds);
 
   return console.log({ days, hours, minutes, seconds });
 }

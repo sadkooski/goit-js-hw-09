@@ -23,7 +23,7 @@ function createPromise(position, delay) {
         reject({ position, delay });
         // Reject
       }
-    }, step);
+    }, delay);
   });
   //
 }
@@ -35,19 +35,17 @@ function createPromiseMultipleTimes(event) {
 
     for (let i = 0; i < amount; i++) {
       //
+      console.log(`i * step - ${i * step}`);
+      console.log(`parseint(delay) - ${i * step + parseInt(delay)}`);
       position = i + 1;
-      createPromise(position, delay)
+      createPromise(position, i * step + parseInt(delay))
         .then(({ position, delay }) => {
-          console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-          Notiflix.Notify.success(
-            `✅ Fulfilled promise ${position} in ${delay}ms`
-          );
+          const fulfillText = `✅ Fulfilled promise ${position} in ${delay}ms`;
+          Notiflix.Notify.success(fulfillText);
         })
         .catch(({ position, delay }) => {
-          console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-          Notiflix.Notify.failure(
-            `❌ Rejected promise ${position} in ${delay}ms`
-          );
+          const rejectText = `❌ Rejected promise ${position} in ${delay}ms`;
+          Notiflix.Notify.failure(rejectText);
         });
       //
     }
