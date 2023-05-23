@@ -30,26 +30,24 @@ function createPromise(position, delay) {
 
 function createPromiseMultipleTimes(event) {
   event.preventDefault();
-  setTimeout(() => {
-    console.log(`delay ${delay}`);
+  console.log(`delay ${delay}`);
 
-    for (let i = 0; i < amount; i++) {
-      //
-      console.log(`i * step - ${i * step}`);
-      console.log(`parseint(delay) - ${i * step + parseInt(delay)}`);
-      position = i + 1;
-      createPromise(position, i * step + parseInt(delay))
-        .then(({ position, delay }) => {
-          const fulfillText = `✅ Fulfilled promise ${position} in ${delay}ms`;
-          Notiflix.Notify.success(fulfillText);
-        })
-        .catch(({ position, delay }) => {
-          const rejectText = `❌ Rejected promise ${position} in ${delay}ms`;
-          Notiflix.Notify.failure(rejectText);
-        });
-      //
-    }
-  }, delay);
+  for (let i = 0; i < amount; i++) {
+    //
+    console.log(`i * step - ${i * step}`);
+    console.log(`parseint(delay) - ${i * step + parseInt(delay)}`);
+    position = i + 1;
+    createPromise(position, i * step + parseInt(delay))
+      .then(({ position, delay }) => {
+        const fulfillText = `✅ Fulfilled promise ${position} in ${delay}ms`;
+        Notiflix.Notify.success(fulfillText);
+      })
+      .catch(({ position, delay }) => {
+        const rejectText = `❌ Rejected promise ${position} in ${delay}ms`;
+        Notiflix.Notify.failure(rejectText);
+      });
+    //
+  }
 }
 
 function inputsListener(event) {
