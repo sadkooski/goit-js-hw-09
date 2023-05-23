@@ -15,13 +15,15 @@ function createPromise(position, delay) {
 
   //
   return new Promise((resolve, reject) => {
-    if (shouldResolve) {
-      resolve({ position, delay });
-      // Fulfill
-    } else {
-      reject({ position, delay });
-      // Reject
-    }
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve({ position, delay });
+        // Fulfill
+      } else {
+        reject({ position, delay });
+        // Reject
+      }
+    }, step);
   });
   //
 }
@@ -32,7 +34,7 @@ function createPromiseMultipleTimes(event) {
     console.log(`delay ${delay}`);
 
     for (let i = 0; i < amount; i++) {
-      // setTimeout(() => {
+      //
       position = i + 1;
       createPromise(position, delay)
         .then(({ position, delay }) => {
@@ -47,7 +49,7 @@ function createPromiseMultipleTimes(event) {
             `❌ Rejected promise ${position} in ${delay}ms`
           );
         });
-      // }, step);
+      //
     }
   }, delay);
 }

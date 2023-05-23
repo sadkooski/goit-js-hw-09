@@ -35,7 +35,7 @@ function addLeadingZero(value) {
   // });
 
   if (String(value).length < 2) {
-    return (value = String(value).padStart(2, '0'));
+    return String(value).padStart(2, '0');
   }
   // console.log(String(value).length);
   console.log(value);
