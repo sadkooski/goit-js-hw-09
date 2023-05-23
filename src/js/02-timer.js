@@ -8,7 +8,6 @@ const daysSpan = document.querySelector('[data-days]');
 const hoursSpan = document.querySelector('[data-hours]');
 const minutesSpan = document.querySelector('[data-minutes]');
 const secondsSpan = document.querySelector('[data-seconds]');
-
 const date = new Date();
 let leftTime = 0;
 
@@ -23,22 +22,29 @@ const options = {
     } else {
       startBtn.removeAttribute('disabled');
       leftTime = selectedDates[0].getTime() - date.getTime();
-
-      console.log(leftTime);
     }
   },
 };
 
-function addLeadingZero(value) {
-  // divTimer.addEventListener("input", (event) => {
-  // if (event.currentTarget.textContent) {};
-  // });
+startBtn.setAttribute('disabled', 'true');
+startBtn.addEventListener('click', () => {
+  startBtn.setAttribute('disabled', 'true');
+  setInterval(() => {
+    leftTime -= 1000;
+    if (leftTime < 1) {
+      return;
+    } else {
+      console.log(leftTime);
+      convertMs(leftTime);
+    }
+  }, 1000);
+});
 
+function addLeadingZero(value) {
   if (String(value).length < 2) {
     return String(value).padStart(2, '0');
   }
-  // console.log(String(value).length);
-  console.log(value);
+  // console.log(value);
   return value;
 }
 
@@ -68,16 +74,4 @@ function convertMs(ms) {
   return console.log({ days, hours, minutes, seconds });
 }
 
-startBtn.setAttribute('disabled', 'true');
-startBtn.addEventListener('click', () => {
-  setInterval(() => {
-    leftTime -= 1000;
-    if (leftTime < 1) {
-      return;
-    } else {
-      console.log(leftTime);
-      convertMs(leftTime);
-    }
-  }, 1000);
-});
 flatpickr(input, options);

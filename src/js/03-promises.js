@@ -53,7 +53,7 @@ function createPromiseMultipleTimes(event) {
 function inputsListener(event) {
   if (event.target.name === 'delay') {
     delay = event.target.value;
-    console.log(delay);
+    // console.log(delay);
   } else if (event.target.name === 'step') {
     step = event.target.value;
     // console.log(step);
