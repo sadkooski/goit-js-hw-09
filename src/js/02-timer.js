@@ -64,8 +64,6 @@ function convertMs(ms) {
   // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
-  addLeadingZero(days);
-
   daysSpan.textContent = addLeadingZero(days);
   hoursSpan.textContent = addLeadingZero(hours);
   minutesSpan.textContent = addLeadingZero(minutes);
